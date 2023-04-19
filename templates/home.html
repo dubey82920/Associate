@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company-Employee Relationship</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(75, 172, 172);
+        }
+        .header{
+            text-align: center;
+            background-color: black;
+            color: white;
+            border: 2px solid red;
+        }
+        .link{
+            text-decoration: none;
+        }
+        .link:hover{
+            color:red
+        }
+        .table{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>Companies</h1></div>
+    <div class="table">
+        <table>
+            <tr>
+                <th>Company Name</th>
+                <th>Employee Names</th>
+                <th>Associate Employee</th>
+            </tr>
+            {% for company in companies %}
+                <tr>
+                    <td>{{ company.name }}</td>
+                    <td>{{ company.employee_set.all|join:", " }}</td>
+                    <td>
+                        <a class="link" href="{% url 'associate_employee' company.id %}">Associate Employee</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

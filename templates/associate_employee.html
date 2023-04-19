@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Employee</title>
+    <style>
+         body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(75, 172, 172);
+        }
+        .header{
+            text-align: center;
+            background-color: black;
+            color: white;
+            border: 2px solid red;
+        }
+        .form{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>Associate Employee with {{ company.name }}</h1></div>
+    <div class="form">
+        <form method="post">
+            {% csrf_token %}
+            <label for="employee">Employee:</label>
+            <select id="employee" name="employee">
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Associate</button>
+        </form>
+        
+    </div>
+</body>
+</html>
